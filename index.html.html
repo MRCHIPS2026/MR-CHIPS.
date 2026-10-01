@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MR CHIPS | Cookies Artesanales y Delivery en Buenos Aires</title>
+<meta name="description" content="Descubrí las cookies más ricas de Buenos Aires. Opciones clásicas, veganas y envíos rápidos a tu domicilio. ¡Armá tu caja MR CHIPS ahora!">
+<!--
+  Convención de nombres de archivo para imágenes (SEO):
+  minúsculas y palabras separadas por guiones, ej:
+  cookie-chocolate-chip-artesanal.jpg
+  cookie-pistacho-artesanal.jpg
+  cookie-maracuya-artesanal.jpg
+  caja-cookies-veganas-buenos-aires.jpg
+  Usar el mismo criterio en el atributo alt de cada <img>.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF1DE;
+    --cream-2:#F4E6C8;
+    --cocoa:#2E1B12;
+    --cocoa-soft:#5A4133;
+    --toast:#A8632D;
+    --berry:#D53F63;
+    --berry-dark:#B22E4F;
+    --butter:#F4B942;
+    --line: rgba(46,27,18,0.14);
+    --radius: 22px;
+    --maxw: 1080px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--cocoa);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(251,241,222,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 0;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Fraunces', serif; font-weight:700; font-size:1.3rem;
+  }
+  .brand-mark{
+    width:34px; height:34px; border-radius:50%;
+    background: radial-gradient(circle at 32% 30%, #C98A4B, var(--toast) 60%, #7A4620 100%);
+    position:relative; flex:none;
+  }
+  .brand-mark::before, .brand-mark::after{
+    content:''; position:absolute; width:5px; height:5px; border-radius:50%;
+    background:#2E1B12;
+  }
+  .brand-mark::before{top:10px; left:8px;}
+  .brand-mark::after{bottom:9px; right:9px;}
+  nav.links{display:flex; gap:26px; font-size:0.95rem;}
+  nav.links a{text-decoration:none; opacity:0.85; transition:opacity .15s;}
+  nav.links a:hover{opacity:1;}
+  .cart-btn{
+    display:flex; align-items:center; gap:8px;
+    background:var(--cocoa); color:var(--cream);
+    border:none; border-radius:100px; padding:10px 18px;
+    font-family:'Work Sans'; font-weight:600; font-size:0.9rem;
+    cursor:pointer;
+  }
+  .cart-count{
+    background:var(--berry); color:white; border-radius:50%;
+    width:20px; height:20px; display:flex; align-items:center; justify-content:center;
+    font-size:0.72rem;
+  }
+  .menu-toggle{display:none; background:none; border:none; font-size:1.6rem; cursor:pointer; color:var(--cocoa);}
+  @media (max-width:760px){
+    nav.links{display:none;}
+    .menu-toggle{display:block;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:70px 0 60px;
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center;
+  }
+  @media (max-width:840px){ .hero{grid-template-columns:1fr; padding:40px 0;} }
+  .eyebrow{
+    color:var(--berry); font-weight:600; font-size:0.95rem; margin-bottom:14px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    line-height:1.05;
+  }
+  .hero p.lead{
+    margin-top:20px; font-size:1.15rem; color:var(--cocoa-soft); max-width:46ch;
+  }
+  .hero-ctas{display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 26px; border-radius:100px; font-weight:600; font-size:0.98rem;
+    text-decoration:none; border:2px solid transparent; cursor:pointer; font-family:'Work Sans';
+  }
+  .btn-primary{background:var(--berry); color:white;}
+  .btn-primary:hover{background:var(--berry-dark);}
+  .btn-ghost{border-color:var(--cocoa); color:var(--cocoa); background:transparent;}
+  .btn-ghost:hover{background:var(--cocoa); color:var(--cream);}
+
+  /* hero cookie illustration */
+  .hero-art{position:relative; display:flex; justify-content:center;}
+  .cookie{
+    width:min(360px, 80vw); height:min(360px, 80vw); border-radius:50%;
+    background: radial-gradient(circle at 30% 28%, #E4A868, #C87F3E 55%, #9C5C29 100%);
+    box-shadow: 0 30px 60px -20px rgba(46,27,18,0.45), inset 0 -10px 20px rgba(0,0,0,0.15);
+    position:relative;
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float{ 0%,100%{transform:translateY(0px) rotate(-2deg);} 50%{transform:translateY(-14px) rotate(2deg);} }
+  .chip{position:absolute; border-radius:46% 54% 60% 40% / 50% 45% 55% 50%; background:#3A2415;}
+  .chip:nth-child(1){width:34px;height:30px; top:20%; left:24%; transform:rotate(15deg);}
+  .chip:nth-child(2){width:26px;height:24px; top:55%; left:15%; transform:rotate(-10deg);}
+  .chip:nth-child(3){width:30px;height:26px; top:65%; left:55%; transform:rotate(25deg);}
+  .chip:nth-child(4){width:22px;height:20px; top:30%; left:60%; transform:rotate(-20deg);}
+  .chip:nth-child(5){width:28px;height:24px; top:15%; left:52%; transform:rotate(5deg);}
+  .chip:nth-child(6){width:20px;height:18px; top:75%; left:35%; transform:rotate(10deg);}
+  @media (prefers-reduced-motion: reduce){ .cookie{animation:none;} }
+
+  .hero-stats{display:flex; gap:28px; margin-top:40px; flex-wrap:wrap;}
+  .stat b{display:block; font-family:'Fraunces'; font-size:1.6rem;}
+  .stat span{font-size:0.85rem; color:var(--cocoa-soft);}
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{padding:64px 0;}
+  .section-head{max-width:56ch; margin-bottom:40px;}
+  .section-head h2{font-size:clamp(1.8rem,3.4vw,2.4rem);}
+  .section-head p{color:var(--cocoa-soft); margin-top:12px; font-size:1.05rem;}
+
+  /* ---------- VALUE PROPS ---------- */
+  .value-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+  }
+  @media (max-width:760px){ .value-grid{grid-template-columns:1fr;} }
+  .value-card{
+    background:var(--cream-2); border-radius:var(--radius); padding:28px;
+    border:1px solid var(--line);
+  }
+  .value-card .ico{font-size:1.8rem; margin-bottom:14px;}
+  .value-card h3{font-size:1.15rem; margin-bottom:8px;}
+  .value-card p{color:var(--cocoa-soft); font-size:0.95rem; margin:0;}
+
+  /* ---------- CATALOG ---------- */
+  .catalog-tag{
+    background:var(--cocoa); color:var(--cream); font-size:0.8rem; padding:5px 12px;
+    border-radius:100px; display:inline-block; margin-bottom:6px;
+  }
+  .box-size-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:28px;
+  }
+  @media (max-width:640px){ .box-size-grid{grid-template-columns:1fr;} }
+  .box-size-card{
+    background:white; border:2px solid var(--line); border-radius:var(--radius);
+    padding:20px; cursor:pointer; text-align:left; font-family:'Work Sans';
+    transition:border-color .15s, transform .15s;
+  }
+  .box-size-card:hover{transform:translateY(-2px);}
+  .box-size-card.active{border-color:var(--berry); background:var(--cream-2);}
+  .box-size-card b{display:block; font-family:'Fraunces'; font-size:1.3rem; margin-bottom:4px;}
+  .box-size-card span{color:var(--cocoa-soft); font-size:0.9rem;}
+  .build-progress{
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    background:var(--cream-2); border-radius:100px; padding:12px 22px; margin-bottom:28px;
+    font-size:0.92rem; font-weight:600; flex-wrap:wrap;
+  }
+  .progress-track{
+    flex:1; min-width:140px; height:8px; border-radius:100px; background:rgba(46,27,18,0.12); overflow:hidden;
+  }
+  .progress-fill{height:100%; background:var(--berry); border-radius:100px; transition:width .2s;}
+  .flavor-heading{
+    font-size:1.35rem; margin:36px 0 18px;
+  }
+  .flavor-heading:first-of-type{margin-top:8px;}
+  .product-body .qty-controls{margin-top:auto;}
+  .flavor-count{font-family:'Fraunces'; font-weight:600; min-width:18px; text-align:center;}
+  .build-cta-wrap{margin-top:32px; display:flex; justify-content:center;}
+  .build-cta{min-width:260px; justify-content:center;}
+  .build-cta:disabled{opacity:0.45; cursor:not-allowed; background:var(--cocoa);}
+  .box-line{
+    background:var(--cream-2); border-radius:16px; padding:14px 16px; margin-bottom:12px;
+  }
+  .box-line-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;}
+  .box-line-head b{font-family:'Fraunces'; font-size:1rem;}
+  .box-line ul{margin:0; padding-left:18px; font-size:0.85rem; color:var(--cocoa-soft);}
+  .box-remove{background:none; border:none; color:var(--berry); font-size:0.82rem; cursor:pointer; font-weight:600;}
+  .product-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:20px;
+  }
+  @media (max-width:900px){ .product-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:520px){ .product-grid{grid-template-columns:1fr;} }
+  .product{
+    background:white; border-radius:var(--radius); overflow:hidden;
+    border:1px solid var(--line); display:flex; flex-direction:column;
+  }
+  .product-swatch{
+    height:140px; display:flex; align-items:center; justify-content:center; font-size:2.4rem;
+  }
+  .product-body{padding:18px 18px 20px; display:flex; flex-direction:column; gap:8px; flex:1;}
+  .product-body h3{font-size:1.05rem;}
+  .product-body p{color:var(--cocoa-soft); font-size:0.88rem; margin:0; flex:1;}
+  .product-tags{display:flex; gap:6px; flex-wrap:wrap;}
+  .tag{font-size:0.72rem; padding:3px 9px; border-radius:100px; background:var(--cream-2); color:var(--cocoa-soft);}
+  .product-foot{display:flex; align-items:center; justify-content:space-between; margin-top:6px;}
+  .price{font-family:'Fraunces'; font-weight:600; font-size:1.15rem;}
+  .add-btn{
+    background:var(--butter); border:none; color:var(--cocoa); font-weight:700;
+    width:34px; height:34px; border-radius:50%; font-size:1.2rem; cursor:pointer;
+    line-height:1;
+  }
+  .add-btn:hover{background:var(--berry); color:white;}
+
+  /* ---------- STORY ---------- */
+  .story{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:48px; align-items:center;
+  }
+  @media (max-width:840px){ .story{grid-template-columns:1fr;} }
+  .founders{display:flex; gap:-10px; margin-top:22px;}
+  .founder-dot{
+    width:52px; height:52px; border-radius:50%; margin-right:-14px; border:3px solid var(--cream);
+    display:flex; align-items:center; justify-content:center; color:white; font-family:'Fraunces'; font-weight:600;
+  }
+  .story blockquote{
+    font-family:'Fraunces'; font-size:1.3rem; font-weight:500; line-height:1.4;
+    border-left:3px solid var(--berry); padding-left:20px; margin:0 0 20px;
+  }
+
+  /* ---------- HOW TO ORDER ---------- */
+  .steps{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:22px;
+  }
+  @media (max-width:900px){ .steps{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:520px){ .steps{grid-template-columns:1fr;} }
+  .step{position:relative; padding-top:8px;}
+  .step-num{
+    font-family:'Fraunces'; font-size:2.1rem; color:var(--berry); opacity:0.55; margin-bottom:6px; display:block;
+  }
+  .step h3{font-size:1.05rem; margin-bottom:6px;}
+  .step p{color:var(--cocoa-soft); font-size:0.9rem; margin:0;}
+
+  .zones{
+    margin-top:44px; background:var(--cocoa); color:var(--cream); border-radius:var(--radius);
+    padding:32px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:24px;
+  }
+  @media (max-width:760px){ .zones{grid-template-columns:1fr;} }
+  .zones h4{font-family:'Fraunces'; font-size:1.05rem; margin-bottom:10px; color:var(--butter);}
+  .zones p, .zones li{font-size:0.9rem; opacity:0.9; margin:0;}
+  .zones ul{margin:0; padding-left:18px;}
+
+  /* ---------- SOCIAL ---------- */
+  .social-strip{
+    display:flex; gap:20px; flex-wrap:wrap;
+  }
+  .social-card{
+    flex:1; min-width:220px; background:var(--cream-2); border-radius:var(--radius);
+    padding:26px; border:1px solid var(--line);
+  }
+  .social-card h3{font-size:1.1rem; margin-bottom:8px;}
+  .social-card a.handle{color:var(--berry); font-weight:600; text-decoration:none;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--cocoa); color:var(--cream); padding:48px 0 28px; margin-top:20px;
+  }
+  .foot-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:32px;}
+  @media (max-width:700px){ .foot-grid{grid-template-columns:1fr;} }
+  footer h4{font-family:'Fraunces'; margin-bottom:14px; color:var(--butter); font-size:1rem;}
+  footer a{text-decoration:none; opacity:0.85; font-size:0.92rem;}
+  footer p{opacity:0.75; font-size:0.9rem;}
+  .foot-bottom{
+    margin-top:36px; padding-top:20px; border-top:1px solid rgba(251,241,222,0.15);
+    font-size:0.8rem; opacity:0.6; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+
+  /* ---------- CART DRAWER ---------- */
+  .overlay{
+    position:fixed; inset:0; background:rgba(46,27,18,0.45); z-index:90;
+    opacity:0; pointer-events:none; transition:opacity .25s;
+  }
+  .overlay.open{opacity:1; pointer-events:auto;}
+  .drawer{
+    position:fixed; top:0; right:0; height:100%; width:min(400px, 92vw);
+    background:var(--cream); z-index:91; box-shadow:-20px 0 40px rgba(0,0,0,0.15);
+    transform:translateX(100%); transition:transform .3s ease; display:flex; flex-direction:column;
+  }
+  .drawer.open{transform:translateX(0);}
+  .drawer-head{
+    display:flex; align-items:center; justify-content:space-between; padding:22px 24px;
+    border-bottom:1px solid var(--line);
+  }
+  .drawer-head h3{font-size:1.2rem;}
+  .drawer-close{background:none; border:none; font-size:1.4rem; cursor:pointer; color:var(--cocoa);}
+  .drawer-items{flex:1; overflow-y:auto; padding:16px 24px;}
+  .drawer-item{
+    display:flex; justify-content:space-between; align-items:center; padding:14px 0;
+    border-bottom:1px solid var(--line); gap:10px;
+  }
+  .drawer-item .info b{font-size:0.95rem; display:block;}
+  .drawer-item .info span{font-size:0.82rem; color:var(--cocoa-soft);}
+  .qty-controls{display:flex; align-items:center; gap:8px;}
+  .qty-controls button{
+    width:26px; height:26px; border-radius:50%; border:1px solid var(--line); background:white;
+    cursor:pointer; font-size:0.95rem;
+  }
+  .drawer-empty{color:var(--cocoa-soft); font-size:0.95rem; text-align:center; margin-top:40px;}
+  .drawer-foot{padding:20px 24px; border-top:1px solid var(--line);}
+  .drawer-total{display:flex; justify-content:space-between; font-family:'Fraunces'; font-size:1.2rem; margin-bottom:16px;}
+  .drawer-foot .btn{width:100%; justify-content:center;}
+  .drawer-note{font-size:0.78rem; color:var(--cocoa-soft); margin-top:10px; text-align:center;}
+
+  ::selection{background:var(--butter);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand"><span class="brand-mark"></span> Mr Chips</div>
+    <nav class="links">
+      <a href="#propuesta">Propuesta</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#historia">Historia</a>
+      <a href="#pedidos">Cómo pedir</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <button class="cart-btn" onclick="toggleCart(true)">
+      🛒 Pedido <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero wrap">
+  <div>
+    <div class="eyebrow">Cookies delivery Buenos Aires · Solo por internet</div>
+    <h1>Cookies Artesanales y Veganas en Buenos Aires</h1>
+    <p class="lead">Somos cuatro socios horneando en tandas chicas, con ingredientes reales y sabores que no vas a encontrar en una góndola. Armá tu caja, pedí por WhatsApp y recibí tu delivery de cookies artesanales o tu próximo regalo dulce a domicilio.</p>
+    <div class="hero-ctas">
+      <a href="#catalogo" class="btn btn-primary">Ver catálogo</a>
+      <a href="#historia" class="btn btn-ghost">Conocé la historia</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><b>100%</b><span>Artesanal, sin conservantes</span></div>
+      <div class="stat"><b>4</b><span>Socios horneando</span></div>
+      <div class="stat"><b>9</b><span>Sabores, incluida línea vegana</span></div>
+    </div>
+  </div>
+  <div class="hero-art">
+    <div class="cookie">
+      <div class="chip"></div><div class="chip"></div><div class="chip"></div>
+      <div class="chip"></div><div class="chip"></div><div class="chip"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROPUESTA DE VALOR -->
+<section id="propuesta" class="wrap">
+  <div class="section-head">
+    <h2>Cookies veganas artesanales y clásicas, sin salir de casa</h2>
+    <p>Nacimos para llevar la cookie de barrio a cualquier casa de Buenos Aires, sin perder lo artesanal en el camino. Ideal también como regalo dulce a domicilio.</p>
+  </div>
+  <div class="value-grid">
+    <div class="value-card">
+      <div class="ico">🍪</div>
+      <h3>Receta propia, horneado en tandas chicas</h3>
+      <p>Nada de producción masiva: cada tanda se hornea y empaqueta el mismo día del pedido.</p>
+    </div>
+    <div class="value-card">
+      <div class="ico">🌾</div>
+      <h3>Ingredientes que reconocés</h3>
+      <p>Manteca, chocolate real y frutos secos enteros. Sin mezclas industriales ni saborizantes artificiales.</p>
+    </div>
+    <div class="value-card">
+      <div class="ico">💚</div>
+      <h3>Línea vegana sin resignar sabor</h3>
+      <p>Tres variedades sin ingredientes de origen animal: maní y chocolate, avena y pasas, y matcha con chocolate blanco vegano.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CATALOGO -->
+<section id="catalogo" class="wrap">
+  <div class="section-head">
+    <span class="catalog-tag">Catálogo</span>
+    <h2>Armá tu caja de cookies</h2>
+    <p>Vendemos por caja, no por unidad: elegí un tamaño y combiná los sabores que quieras hasta completarla. Cerramos el pedido por WhatsApp con la fecha de entrega.</p>
+  </div>
+
+  <!-- Selector de tamaño de caja -->
+  <div class="box-size-grid" id="boxSizeGrid"></div>
+
+  <!-- Progreso de armado -->
+  <div class="build-progress" id="buildProgress"></div>
+
+  <h2 class="flavor-heading">Sabores Clásicos</h2>
+  <div class="product-grid" id="grid-clasico"></div>
+
+  <h2 class="flavor-heading">Opciones Veganas</h2>
+  <div class="product-grid" id="grid-vegana"></div>
+
+  <div class="build-cta-wrap">
+    <button class="btn btn-primary build-cta" id="addBoxBtn" onclick="addBoxToCart()" disabled>
+      Agregar caja al pedido
+    </button>
+  </div>
+</section>
+
+<!-- HISTORIA -->
+<section id="historia" class="wrap">
+  <div class="story">
+    <div>
+      <div class="cookie" style="width:220px;height:220px;">
+        <div class="chip"></div><div class="chip"></div><div class="chip"></div>
+      </div>
+      <div class="founders">
+        <div class="founder-dot" style="background:#B5652D;">M</div>
+        <div class="founder-dot" style="background:#D53F63;">R</div>
+        <div class="founder-dot" style="background:#F4B942; color:#2E1B12;">C</div>
+        <div class="founder-dot" style="background:#5A4133;">H</div>
+      </div>
+    </div>
+    <div>
+      <div class="eyebrow">Nuestra historia</div>
+      <blockquote>Empezamos horneando para amigos un fin de semana, y las cajas nunca alcanzaban.</blockquote>
+      <p>Mr Chips arrancó en una cocina de barrio, entre cuatro amigos que se turnaban el horno los sábados. Lo que era un hobby se convirtió en pedidos cada vez más grandes, hasta que decidimos hacerlo posta: sin local, sin vidriera, pero con la misma cookie de siempre. Hoy seguimos siendo los cuatro atrás de cada pedido, desde la receta hasta el mensaje de WhatsApp que te confirma la entrega.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMO PEDIR -->
+<section id="pedidos" class="wrap">
+  <div class="section-head">
+    <h2>Cómo funciona un pedido</h2>
+    <p>De la cocina a tu casa en cuatro pasos.</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <span class="step-num">1</span>
+      <h3>Armás tu caja</h3>
+      <p>Elegís el tamaño (3, 6 o 12) y combinás los sabores que quieras hasta completarla.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">2</span>
+      <h3>Confirmás por WhatsApp</h3>
+      <p>Enviamos el resumen y coordinamos zona y fecha de entrega.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">3</span>
+      <h3>Horneamos tu tanda</h3>
+      <p>Preparamos el pedido fresco, entre 24 y 48 horas según demanda.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">4</span>
+      <h3>Te llega a la puerta</h3>
+      <p>Delivery propio o envío según tu zona, con pago contra entrega o transferencia.</p>
+    </div>
+  </div>
+
+  <div class="zones">
+    <div>
+      <h4>Zonas de entrega</h4>
+      <ul>
+        <li>CABA: entrega en el día en zonas céntricas</li>
+        <li>GBA: entrega en 24–48 hs</li>
+        <li>Resto del país: envío por correo</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Formas de pago</h4>
+      <ul>
+        <li>Transferencia bancaria</li>
+        <li>Mercado Pago</li>
+        <li>Efectivo contra entrega (CABA/GBA)</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Tiempos de armado</h4>
+      <p>Cada caja se hornea a pedido. El tiempo de preparación es de 24 a 48 horas hábiles antes del envío.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REDES -->
+<section class="wrap">
+  <div class="section-head">
+    <h2>Seguinos y hacé tu pedido</h2>
+    <p>Ahí mostramos el detrás de escena del horneado y las promos de lanzamiento.</p>
+  </div>
+  <div class="social-strip">
+    <div class="social-card">
+      <h3>Instagram</h3>
+      <p>Fotos del proceso, nuevos sabores y sorteos.</p>
+      <a class="handle" href="https://instagram.com/mrchips.cookies" target="_blank">@mrchips.cookies</a>
+    </div>
+    <div class="social-card">
+      <h3>TikTok</h3>
+      <p>El paso a paso del horneado y detrás de escena de los socios.</p>
+      <a class="handle" href="https://tiktok.com/@mrchips.cookies" target="_blank">@mrchips.cookies</a>
+    </div>
+    <div class="social-card">
+      <h3>WhatsApp</h3>
+      <p>Para pedidos, consultas y cambios de último momento.</p>
+      <a class="handle" href="#" onclick="checkoutWhatsApp(); return false;">Escribinos directo</a>
+    </div>
+  </div>
+</section>
+
+<footer id="contacto">
+  <div class="wrap foot-grid">
+    <div>
+      <div class="brand" style="color:var(--cream);">
+        <span class="brand-mark"></span> Mr Chips
+      </div>
+      <p style="margin-top:14px; max-width:36ch;">Cookies artesanales hechas por cuatro socios, sin local físico y con entrega a domicilio.</p>
+    </div>
+    <div>
+      <h4>Contacto</h4>
+      <p><a href="#" onclick="checkoutWhatsApp(); return false;">WhatsApp: +54 9 11 3934-8356</a></p>
+      <p><a href="mailto:hola@mrchips.com.ar">hola@mrchips.com.ar</a></p>
+    </div>
+    <div>
+      <h4>Redes</h4>
+      <p><a href="https://instagram.com/mrchips.cookies" target="_blank">Instagram</a></p>
+      <p><a href="https://tiktok.com/@mrchips.cookies" target="_blank">TikTok</a></p>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© 2026 Mr Chips. Todos los derechos reservados.</span>
+    <span>Hecho por cuatro socios, con horno propio.</span>
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="overlay" id="overlay" onclick="toggleCart(false)"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h3>Tu pedido</h3>
+    <button class="drawer-close" onclick="toggleCart(false)">✕</button>
+  </div>
+  <div class="drawer-items" id="drawerItems">
+    <p class="drawer-empty">Todavía no agregaste cajas. Elegí tus sabores en el catálogo.</p>
+  </div>
+  <div class="drawer-foot">
+    <div class="drawer-total"><span>Total</span><span id="drawerTotal">$0</span></div>
+    <button class="btn btn-primary" onclick="checkoutWhatsApp()">Confirmar por WhatsApp</button>
+    <p class="drawer-note">Coordinamos zona, forma de pago y fecha de entrega por chat.</p>
+  </div>
+</div>
+
+<script>
+  const WHATSAPP_NUMBER = "5491139348356"; // +54 9 11 3934-8356
+
+  // Tamaños de caja disponibles ($6.000 por cookie)
+  const boxSizes = [
+    { size:3,  price:18000, label:'Caja x3' },
+    { size:6,  price:36000, label:'Caja x6' },
+    { size:12, price:72000, label:'Caja x12' },
+  ];
+
+  const flavors = [
+    { id:'chocochip', name:'Chocolate Chip', desc:'Masa de vainilla con trozos de chocolate amargo y con leche.', emoji:'🍫', tags:['Best seller'], category:'clasico' },
+    { id:'doblechoc', name:'Doble Chocolate', desc:'Masa de cacao intensa con chips de chocolate blanco o con leche.', emoji:'🍪', tags:[], category:'clasico' },
+    { id:'cookiescream', name:'Cookies and Cream', desc:'Masa suave de vainilla con trozos de galletas tipo Oreo y chocolate blanco.', emoji:'🤍', tags:['Best seller'], category:'clasico' },
+    { id:'pistacho', name:'Pistacho', desc:'Masa con pasta de pistacho, color verde natural y chips de chocolate blanco.', emoji:'🍏', tags:[], category:'clasico' },
+    { id:'limon', name:'Limón', desc:'Masa mantecosa de vainilla con ralladura cítrica y esencia de limón natural.', emoji:'🍋', tags:[], category:'clasico' },
+    { id:'maracuya', name:'Maracuyá', desc:'Masa suave con relleno artesanal de fruta tropical y acidez refrescante.', emoji:'🟡', tags:[], category:'clasico' },
+    { id:'manimantequilla', name:'Mantequilla de Maní y Chocolate', desc:'Base de manteca de maní natural con trozos de chocolate amargo vegano.', emoji:'🥜', tags:['Vegana'], category:'vegana' },
+    { id:'avenapasas', name:'Avena y Pasas', desc:'Masa integral con avena arrollada, canela y pasas de uva.', emoji:'🌾', tags:['Vegana'], category:'vegana' },
+    { id:'matcha', name:'Matcha y Chocolate Blanco', desc:'Té verde matcha de alta calidad con chips de chocolate blanco sin lácteos.', emoji:'🍵', tags:['Vegana'], category:'vegana' },
+  ];
+
+  // Caja que se está armando ahora mismo
+  let currentBoxSize = null;
+  let currentSelection = {}; // flavorId -> qty
+
+  // Cajas ya confirmadas en el pedido
+  let cartBoxes = []; // { size, price, selection: {flavorId: qty} }
+
+  function money(n){
+    return n.toLocaleString('es-AR', { style:'currency', currency:'ARS', maximumFractionDigits:0 });
+  }
+
+  function currentUnitsUsed(){
+    return Object.values(currentSelection).reduce((a,b)=>a+b, 0);
+  }
+
+  function renderBoxSizes(){
+    const grid = document.getElementById('boxSizeGrid');
+    grid.innerHTML = boxSizes.map(b => `
+      <button class="box-size-card ${currentBoxSize === b.size ? 'active' : ''}" onclick="selectBoxSize(${b.size})">
+        <b>${b.label}</b>
+        <span>${b.size} cookies combinables · ${money(b.price)}</span>
+      </button>
+    `).join('');
+  }
+
+  function selectBoxSize(size){
+    currentBoxSize = size;
+    currentSelection = {};
+    renderBoxSizes();
+    renderFlavorGrids();
+    renderProgress();
+  }
+
+  function renderFlavorGrids(){
+    renderFlavorGroup('grid-clasico', 'clasico');
+    renderFlavorGroup('grid-vegana', 'vegana');
+  }
+
+  function renderFlavorGroup(gridId, category){
+    const grid = document.getElementById(gridId);
+    const list = flavors.filter(f => f.category === category);
+    const disabled = currentBoxSize === null;
+    grid.innerHTML = list.map(f => {
+      const qty = currentSelection[f.id] || 0;
+      return `
+      <div class="product">
+        <div class="product-swatch" style="background:var(--cream-2);">${f.emoji}</div>
+        <div class="product-body">
+          <h3>${f.name}</h3>
+          <p>${f.desc}</p>
+          <div class="product-tags">${f.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+          <div class="product-foot qty-controls">
+            <button ${disabled || qty===0 ? 'disabled' : ''} onclick="changeFlavorQty('${f.id}', -1)">−</button>
+            <span class="flavor-count">${qty}</span>
+            <button ${disabled || currentUnitsUsed() >= currentBoxSize ? 'disabled' : ''} onclick="changeFlavorQty('${f.id}', 1)">+</button>
+          </div>
+        </div>
+      </div>
+    `;
+    }).join('');
+  }
+
+  function changeFlavorQty(id, delta){
+    if(currentBoxSize === null) return;
+    const current = currentSelection[id] || 0;
+    const used = currentUnitsUsed();
+    if(delta > 0 && used >= currentBoxSize) return;
+    const next = current + delta;
+    if(next <= 0){ delete currentSelection[id]; }
+    else { currentSelection[id] = next; }
+    renderFlavorGrids();
+    renderProgress();
+  }
+
+  function renderProgress(){
+    const el = document.getElementById('buildProgress');
+    const btn = document.getElementById('addBoxBtn');
+    if(currentBoxSize === null){
+      el.innerHTML = `<span>Elegí un tamaño de caja para empezar a combinar sabores.</span>`;
+      btn.disabled = true;
+      return;
+    }
+    const used = currentUnitsUsed();
+    const pct = Math.min(100, (used / currentBoxSize) * 100);
+    el.innerHTML = `
+      <span>${used} / ${currentBoxSize} cookies elegidas</span>
+      <div class="progress-track"><div class="progress-fill" style="width:${pct}%;"></div></div>
+      <span>${used === currentBoxSize ? '¡Caja completa!' : `Faltan ${currentBoxSize - used}`}</span>
+    `;
+    btn.disabled = used !== currentBoxSize;
+  }
+
+  function addBoxToCart(){
+    if(currentBoxSize === null || currentUnitsUsed() !== currentBoxSize) return;
+    const boxDef = boxSizes.find(b => b.size === currentBoxSize);
+    cartBoxes.push({ size: currentBoxSize, price: boxDef.price, selection: { ...currentSelection } });
+    currentSelection = {};
+    renderFlavorGrids();
+    renderProgress();
+    renderCart();
+    toggleCart(true);
+  }
+
+  function removeBox(index){
+    cartBoxes.splice(index, 1);
+    renderCart();
+  }
+
+  function renderCart(){
+    const container = document.getElementById('drawerItems');
+    const countEl = document.getElementById('cartCount');
+    const totalEl = document.getElementById('drawerTotal');
+
+    countEl.textContent = cartBoxes.length;
+
+    if(cartBoxes.length === 0){
+      container.innerHTML = '<p class="drawer-empty">Todavía no agregaste cajas. Elegí un tamaño y combiná sabores en el catálogo.</p>';
+      totalEl.textContent = money(0);
+      return;
+    }
+
+    let total = 0;
+    container.innerHTML = cartBoxes.map((box, i) => {
+      total += box.price;
+      const items = Object.entries(box.selection).map(([id, qty]) => {
+        const f = flavors.find(x => x.id === id);
+        return `<li>${qty}x ${f.name}</li>`;
+      }).join('');
+      return `
+        <div class="box-line">
+          <div class="box-line-head">
+            <b>Caja x${box.size} — ${money(box.price)}</b>
+            <button class="box-remove" onclick="removeBox(${i})">Quitar</button>
+          </div>
+          <ul>${items}</ul>
+        </div>
+      `;
+    }).join('');
+    totalEl.textContent = money(total);
+  }
+
+  function toggleCart(open){
+    document.getElementById('drawer').classList.toggle('open', open);
+    document.getElementById('overlay').classList.toggle('open', open);
+  }
+
+  function checkoutWhatsApp(){
+    let text = 'Hola Mr Chips! Quiero hacer un pedido:%0A%0A';
+    if(cartBoxes.length === 0){
+      text = 'Hola Mr Chips! Quería hacer una consulta sobre las cookies.';
+    } else {
+      let total = 0;
+      cartBoxes.forEach((box, i) => {
+        total += box.price;
+        text += `Caja x${box.size} (${money(box.price)}):%0A`;
+        Object.entries(box.selection).forEach(([id, qty]) => {
+          const f = flavors.find(x => x.id === id);
+          text += `  - ${qty}x ${f.name}%0A`;
+        });
+        text += '%0A';
+      });
+      text += `Total: ${money(total)}%0A%0AMi zona de entrega es: `;
+    }
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
+  }
+
+  renderBoxSizes();
+  renderFlavorGrids();
+  renderProgress();
+  renderCart();
+</script>
+
+</body>
+</html>
